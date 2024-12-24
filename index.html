@@ -3,68 +3,82 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Amigo Invisible - Código</title>
+  <title>Amigo Invisible</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       background-color: #f5f5f5;
       color: #333;
       padding: 20px;
-      margin: 0;
       text-align: center;
     }
     h1 {
       color: #4CAF50;
       font-size: 36px;
-      margin-bottom: 20px;
     }
-    p {
+    .message {
+      font-size: 20px;
+      margin-top: 20px;
+    }
+    .choices {
+      margin-top: 30px;
       font-size: 18px;
-      margin-bottom: 20px;
     }
-    pre {
-      background-color: #282c34;
+    button {
+      background-color: #4CAF50;
       color: white;
-      padding: 20px;
-      border-radius: 5px;
+      padding: 10px 20px;
+      margin: 10px;
       font-size: 16px;
-      overflow-x: auto;
-      max-width: 100%;
-      margin: 20px 0;
-      text-align: left;
-      white-space: pre-wrap;
-      word-wrap: break-word;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .result {
+      margin-top: 40px;
+      font-size: 20px;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
 
-  <h1>Amigo Invisible - Código</h1>
-  <p>A continuación, verás el código de la aplicación del amigo invisible:</p>
+  <h1>¡Bienvenido al Amigo Invisible!</h1>
+  <p class="message">Hola <span id="user-name"></span>, para saber quién es tu amigo invisible deberás elegir una fecha de nacimiento y ver si es quién tú creías.</p>
   
-  <!-- Aquí es donde debes poner el código de Python como texto -->
-  <pre>
-import datetime
+  <div class="choices">
+    <p>Elige una de las siguientes fechas de cumpleaños:</p>
+    <button onclick="checkAnswer('10/10')">10 de Octubre (Manurro)</button>
+    <button onclick="checkAnswer('21/09')">21 de Septiembre (Matute)</button>
+    <button onclick="checkAnswer('22/11')">22 de Noviembre (Marga)</button>
+    <button onclick="checkAnswer('25/04')">25 de Abril (Apa)</button>
+  </div>
 
-def elegir_fecha():
-    fechas_posibles = [
-        ("10/10", "Manurro"),
-        ("21/09", "Matute"),
-        ("22/11", "Marga"),
-        ("25/04", "Apa")
-    ]
-    print("Elige una de las siguientes fechas:")
-    for i, (fecha, nombre) in enumerate(fechas_posibles, start=1):
-        print(f"{i}. {fecha} ({nombre})")
-    
-    opcion = int(input("Elige el número de la fecha correcta (1-4): "))
-    if opcion == 2:
-        print("¡Correcto! El regalo viene de Matute.")
-    else:
-        print("¡Incorrecto! Sigue buscando...")
+  <div class="result" id="result"></div>
 
-elegir_fecha()
-  </pre>
+  <script>
+    // Configuración inicial
+    const userName = "Martín";  // Aquí pones el nombre del usuario, o podrías pedirlo en un formulario
+    document.getElementById('user-name').textContent = userName;
+
+    // Fecha correcta
+    const correctDate = '21/09';
+
+    // Función que maneja la elección de la fecha
+    function checkAnswer(selectedDate) {
+      const resultElement = document.getElementById('result');
+      if (selectedDate === correctDate) {
+        resultElement.textContent = "¡Correcto! El regalo viene de Matute.";
+        resultElement.style.color = "green";
+      } else {
+        resultElement.textContent = "¡Incorrecto! Sigue buscando...";
+        resultElement.style.color = "red";
+      }
+    }
+  </script>
 
 </body>
 </html>
